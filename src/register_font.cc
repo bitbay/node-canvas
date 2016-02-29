@@ -21,7 +21,7 @@ register_font(unsigned char *filepath) {
   #elif defined(_WIN32)
   success = AddFontResourceEx((LPCSTR)filepath, FR_PRIVATE, 0) != 0;
   #else
-  success = FcConfigAppFontAddFile(FcConfigGetCurrent(), (FcChar8 *)(filepath));
+  success = FcConfigAppFontAddFile(FcConfigGetCurrent(), reinterpret_cast<const FcChar8*>(filepath));
   #endif
   
   // Tell Pango to throw away the current FontMap and create a new one. This
